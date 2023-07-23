@@ -42,6 +42,7 @@ Vagrant.configure("2") do |config|
     proxy.vm.network "private_network", ip: "192.168.61.103", virtualbox__intnet: true
     proxy.vm.network "private_network", ip: "192.168.62.103", virtualbox__intnet: true
     # proxy.vm.network "public_network", bridge: "enp6s0"
+    proxy.ssh.forward_x11 = true
 
     proxy.vm.provision :shell, path: "base.sh"
     proxy.vm.provision :shell, path: "install_cefore.sh"
