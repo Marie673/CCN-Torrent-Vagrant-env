@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "client" do |client|
     client.vm.hostname = "client"
-    client.vm.network "private_network", ip: "192.168.60.101", virtualbox__intnet: true
+    client.vm.network "private_network", ip: "192.168.60.102", virtualbox__intnet: true
     # client.vm.network "public_network", bridge: "enp6s0"
 
     client.vm.provision :shell, path: "base.sh"
