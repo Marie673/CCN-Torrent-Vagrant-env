@@ -53,6 +53,7 @@ Vagrant.configure("2") do |config|
     qbittorrent.vm.hostname = "qbittorrent"
     qbittorrent.vm.network "private_network", ip: "192.168.62.104", virtualbox__intnet: true
     qbittorrent.vm.network "forwarded_port", guest: 5901, host: 59001, auto_correct: true
+    qbittorrent.ssh.forward_x11 = true
     # qbittorrent.vm.network "public_network", bridge: "enp6s0"
 
     qbittorrent.vm.provision :shell, path: "base.sh"
