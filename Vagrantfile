@@ -57,6 +57,7 @@ Vagrant.configure("2") do |config|
     # qbittorrent.vm.network "public_network", bridge: "enp6s0"
 
     qbittorrent.vm.provision :shell, path: "base.sh"
+    qbittorrent.vm.provision :shell, path: "qbittorrent.sh"
 
   end
 end
