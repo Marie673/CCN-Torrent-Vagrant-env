@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
     vb.memory = 8192
-    vb.cpus = 2
+    vb.cpus = 4
     # vb.customize ["modifyvm", :id, "--ipapic", "on"]
   end
 
