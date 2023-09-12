@@ -28,7 +28,7 @@ configure_network_interface() {
   fi
 
   # Check if a qdisc is already attached to the network interface
-  if ! tc qdisc show dev "$interface" | grep -q "netem"; then
+  if ! sudo tc qdisc show dev "$interface" | grep -q "netem"; then
     # No qdisc found, so add a new one with the specified delay and bandwidth limit
     sudo tc qdisc add dev "$interface" root handle 1:0 netem delay "${delay_ms}ms"
     sudo tc qdisc add dev "$interface" parent 1:1 handle 10: tbf rate "${bandwidth_mbps}mbit" burst "${burst}kbit" limit "${limit}kbit"
