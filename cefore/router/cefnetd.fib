@@ -1,0 +1,2 @@
+#ccnx:/example udp 10.0.1.
+ccnx:/BitTorrent udp 192.168.61.101
