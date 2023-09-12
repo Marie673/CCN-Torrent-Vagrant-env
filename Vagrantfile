@@ -23,6 +23,7 @@ Vagrant.configure("2") do |config|
     client.vm.provision :shell, path: "install_cefore.sh"
 
     client.vm.provision :shell, run: "always", path: "provision/buffa_tune.sh"
+    client.vm.provision :shell, run: "always", path: "provision/tc/client.sh"
   end
 
   config.vm.define "router" do |router|
@@ -35,6 +36,7 @@ Vagrant.configure("2") do |config|
     router.vm.provision :shell, path: "install_cefore.sh"
 
     router.vm.provision :shell, run: "always", path: "provision/buffa_tune.sh"
+    router.vm.provision :shell, run: "always", path: "provision/tc/router.sh"
   end
 
   config.vm.define "proxy" do |proxy|
@@ -48,6 +50,7 @@ Vagrant.configure("2") do |config|
     proxy.vm.provision :shell, path: "install_cefore.sh"
 
     proxy.vm.provision :shell, run: "always", path: "provision/buffa_tune.sh"
+    proxy.vm.provision :shell, run: "always", path: "provision/tc/proxy.sh"
   end
 
   config.vm.define "qbittorrent" do |qbittorrent|
@@ -60,5 +63,6 @@ Vagrant.configure("2") do |config|
     qbittorrent.vm.provision :shell, path: "base.sh"
     qbittorrent.vm.provision :shell, path: "qbittorrent_install.sh"
 
+    qbittorrent.vm.provision :shell, run: "always", path: "provision/tc/ip.sh"
   end
 end
