@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Check if the script is running as root
+if [ "$EUID" -ne 0 ]; then
+  echo "This script must be run as root. Please use sudo."
+  exit 1
+fi
+
 # Get the value of CONFIG_HZ from the kernel configuration
 config_hz=$(cat /boot/config-`uname -r` | grep CONFIG_HZ= | cut -d "=" -f2)
 
@@ -16,6 +22,12 @@ network_interface2="enp0s9"  # Add the second network interface here
 # Function to configure a network interface
 configure_network_interface() {
   local interface="$1"
+  # Check if the network interface exists
+  if ! ip link show "$interface" &> /dev/null; then
+    echo "Network interface $interface does not exist."
+    return 1
+  fi
+
   # Check if a qdisc is already attached to the network interface
   if ! tc qdisc show dev "$interface" | grep -q "netem"; then
     # No qdisc found, so add a new one with the specified delay and bandwidth limit
